@@ -13,7 +13,7 @@ class LocationTest {
     public void createLocationSuccessfulTest() {
         // Arrange
         // Act
-        Location location = Location.create(4, 7);
+        Location location = new Location(4, 7);
 
         // Assert
         assertThat(location).isNotNull();
@@ -25,23 +25,23 @@ class LocationTest {
         // Act
         // Assert
         assertThrows(IllegalArgumentException.class, () -> {
-            Location.create(null, 5);
+            new Location(null, 5);
         });
 
         assertThrows(IllegalArgumentException.class, () -> {
-            Location.create(999, 4);
+            new Location(999, 4);
         });
 
         assertThrows(IllegalArgumentException.class, () -> {
-            Location.create(4, 999);
+            new Location(4, 999);
         });
     }
 
     @Test
     public void distanceToSuccessfulTest() {
         // Arrange
-        Location locationFirst = Location.create(2, 6);
-        Location locationSecond = Location.create(4, 9);
+        Location locationFirst = new Location(2, 6);
+        Location locationSecond = new Location(4, 9);
 
         // Act
         Integer distanceBetweenLocations = locationFirst.distanceTo(locationSecond);
@@ -54,7 +54,7 @@ class LocationTest {
     @Test
     public void distanceToFailTest() {
         // Arrange
-        Location locationFirst = Location.create(2, 5);
+        Location locationFirst = new Location(2, 5);
 
         // Act
         // Assert
