@@ -9,7 +9,7 @@ import java.util.UUID;
 public class StoragePlace extends BaseEntity<UUID> {
 
     private String name;
-    private Integer totalValue;
+    private Integer totalVolume;
     private UUID orderId;
 
     protected StoragePlace() {
@@ -32,7 +32,7 @@ public class StoragePlace extends BaseEntity<UUID> {
         }
 
         this.name = name;
-        this.totalValue = totalValue;
+        this.totalVolume = totalValue;
     }
 
     public boolean canStore(Integer value) {
@@ -44,7 +44,7 @@ public class StoragePlace extends BaseEntity<UUID> {
             return false;
         }
 
-        if (value > this.totalValue) {
+        if (value > this.totalVolume) {
             return false;
         }
 
@@ -62,10 +62,6 @@ public class StoragePlace extends BaseEntity<UUID> {
 
         if (value < 1) {
             throw new IllegalArgumentException("Product size must be positive.");
-        }
-
-        if (value > this.totalValue) {
-            throw new IllegalArgumentException("Order size exceeds storage capacity.");
         }
 
         if (this.orderId != null) {
