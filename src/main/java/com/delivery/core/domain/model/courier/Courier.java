@@ -89,7 +89,6 @@ public class Courier extends Aggregate<UUID> {
             for (StoragePlace storagePlace : this.storagePlaces) {
                 if (storagePlace.canStore(volumeOrder)) {
                     storagePlace.store(order.getId(), volumeOrder);
-                    order.assigned(this);
                     return;
                 }
             }
@@ -105,7 +104,6 @@ public class Courier extends Aggregate<UUID> {
         for (StoragePlace storagePlace : this.storagePlaces) {
             if (order.getId().equals(storagePlace.getOrderId())) {
                 storagePlace.clear(order.getId());
-                order.completed();
             }
         }
     }
