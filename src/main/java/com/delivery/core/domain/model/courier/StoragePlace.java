@@ -64,6 +64,10 @@ public class StoragePlace extends BaseEntity<UUID> {
             throw new IllegalArgumentException("Product size must be positive.");
         }
 
+        if (!canStore(value)) {
+            throw new IllegalArgumentException("Order size " + value + " exceeds maximum volume " + totalVolume);
+        }
+
         if (this.orderId != null) {
             throw new IllegalArgumentException("Storage place is already occupied.");
         }
