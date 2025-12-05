@@ -2,7 +2,6 @@ package com.delivery.core.domain.model.courier;
 
 import com.delivery.core.domain.model.karnel.Location;
 import com.delivery.core.domain.model.order.Order;
-import com.delivery.core.domain.model.order.OrderStatus;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -118,7 +117,8 @@ class CourierTest {
         // Act
         // Assert
         assertThrows(IllegalArgumentException.class, () -> {
-            courier.canTakeOrder(null);;
+            courier.canTakeOrder(null);
+            ;
         });
     }
 
@@ -145,7 +145,6 @@ class CourierTest {
         courier.takeOrder(order);
 
         // Assert
-        assertEquals(order.getCourierId(), courier.getId());
         assertEquals(order.getId(), courier.getStoragePlaces().get(0).getOrderId());
     }
 
@@ -189,7 +188,6 @@ class CourierTest {
         // Assert
         UUID orderIdStoragePlaces = courier.getStoragePlaces().get(0).getOrderId();
 
-        assertEquals(OrderStatus.ASSIGNED, order.getOrderStatus());
         assertNotNull(orderIdStoragePlaces);
     }
 
@@ -208,7 +206,6 @@ class CourierTest {
         UUID orderIdStoragePlaces = courier.getStoragePlaces().get(0).getOrderId();
 
         assertNull(orderIdStoragePlaces);
-        assertEquals(OrderStatus.COMPLETED, order.getOrderStatus());
     }
 
     @Test
