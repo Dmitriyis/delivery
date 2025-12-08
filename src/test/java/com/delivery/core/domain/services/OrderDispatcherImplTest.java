@@ -25,7 +25,7 @@ class OrderDispatcherImplTest {
         Location locationCourierThird  = new Location(2, 5);
         Courier courierSecondThird = new Courier("StThird ", 4, locationCourierThird);
 
-        // Win
+
         Location locationCourierForSkip = new Location(6, 1);
         Courier courierFirstForSkip = new Courier("StSkip", 6, locationCourierForSkip);
 
@@ -58,9 +58,9 @@ class OrderDispatcherImplTest {
         Location locationCourierSecond  = new Location(4, 7);
         Courier courierSecond = new Courier("StSecond", 2, locationCourierSecond);
 
+        // Win
         Location locationCourierThird  = new Location(6, 1);
         Courier courierSecondThird = new Courier("StThird ", 4, locationCourierThird);
-
 
         Location locationOrder = new Location(7, 2);
         Order order = new Order(UUID.randomUUID(), locationOrder, 5);
