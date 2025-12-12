@@ -54,6 +54,14 @@ public class Courier extends Aggregate<UUID> {
         this.location = location;
     }
 
+    private Courier(UUID id, String name, Integer speed, Location location, List<StoragePlace> storagePlaces) {
+        this.id = id;
+        this.name = name;
+        this.speed = speed;
+        this.location = location;
+        this.storagePlaces = storagePlaces;
+    }
+
 
     public void addStoragePlace(String name, Integer volume) {
         StoragePlace newStoragePlace = new StoragePlace(name, volume);
@@ -135,5 +143,9 @@ public class Courier extends Aggregate<UUID> {
         Location location = new Location(this.location.getX() + moveX, this.location.getY() + moveY);
 
         this.location = location;
+    }
+
+    public static Courier reStore(UUID id, String name, Integer speed, Location location, List<StoragePlace> storagePlaces) {
+        return new Courier(id, name, speed, location, storagePlaces);
     }
 }
