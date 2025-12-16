@@ -12,7 +12,7 @@ public class StoragePlace extends BaseEntity<UUID> {
     private Integer totalVolume;
     private UUID orderId;
 
-    protected StoragePlace() {
+    private StoragePlace() {
 
     }
 
@@ -33,6 +33,13 @@ public class StoragePlace extends BaseEntity<UUID> {
 
         this.name = name;
         this.totalVolume = totalValue;
+    }
+
+    private StoragePlace(UUID id, String name, Integer totalValue, UUID orderId) {
+        this.id = id;
+        this.name = name;
+        this.totalVolume = totalValue;
+        this.orderId = orderId;
     }
 
     public boolean canStore(Integer value) {
@@ -89,5 +96,9 @@ public class StoragePlace extends BaseEntity<UUID> {
 
     public boolean isOccupied() {
         return this.orderId != null;
+    }
+
+    public static StoragePlace reStore(UUID id, String name, Integer totalValue, UUID orderId) {
+        return new StoragePlace(id, name, totalValue, orderId);
     }
 }

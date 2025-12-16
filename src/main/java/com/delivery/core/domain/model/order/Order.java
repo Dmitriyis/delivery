@@ -46,6 +46,14 @@ public class Order extends Aggregate<UUID> {
         this.orderStatus = OrderStatus.CREATED;
     }
 
+    private Order(UUID id, Location location, Integer volume, OrderStatus orderStatus, UUID courierId) {
+        this.id = id;
+        this.orderStatus = orderStatus;
+        this.location = location;
+        this.volume = volume;
+        this.courierId = courierId;
+    }
+
     public void assigned(Courier courier) {
         if (courier == null) {
             throw new IllegalArgumentException("Courier cannot be null");
@@ -73,5 +81,9 @@ public class Order extends Aggregate<UUID> {
         }
 
         this.orderStatus = OrderStatus.COMPLETED;
+    }
+
+    public static Order reStore(UUID id, Location location, Integer volume, OrderStatus orderStatus, UUID courierId) {
+        return new Order(id, location, volume, orderStatus, courierId);
     }
 }

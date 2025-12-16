@@ -1,10 +1,5 @@
 package com.delivery.ddd;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
 import lombok.Getter;
 
 import java.io.Serializable;
@@ -12,12 +7,8 @@ import java.util.Objects;
 
 
 @Getter
-@Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class BaseEntity<TId extends Comparable<TId> & Serializable> implements Comparable<BaseEntity<TId>> {
 
-    @Id
-    @Column(name = "id")
     protected TId id;
 
     protected BaseEntity() {
