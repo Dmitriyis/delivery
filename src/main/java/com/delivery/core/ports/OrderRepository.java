@@ -12,7 +12,7 @@ public interface OrderRepository {
 
     Order getById(UUID orderId);
 
-    Order getRandomOneOrderWithStatusCreated() throws Exception;
+    Order getRandomOneOrderWithStatusCreated();
 
     List<Order> getAllOrderWithStatusAssigned();
 }

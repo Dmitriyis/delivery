@@ -10,7 +10,11 @@ public interface CourierRepository {
     void addCourier(Courier courier);
     void updateCourier(Courier courier);
 
-    Courier getById(UUID courierId) throws Exception;
+    Courier getById(UUID courierId);
 
-    List<Courier> getAllFreeCouriersWhereAllStorageSpacesAvailable() throws Exception;
+    List<Courier> getAllFreeCouriersWhereAllStorageSpacesAvailable();
+
+    List<Courier> getAllWithOrders();
+
+    void saveAll(List<Courier> couriers);
 }
