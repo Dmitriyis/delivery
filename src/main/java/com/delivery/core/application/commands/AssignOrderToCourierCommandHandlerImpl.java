@@ -7,6 +7,7 @@ import com.delivery.core.ports.CourierRepository;
 import com.delivery.core.ports.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -20,6 +21,7 @@ public class AssignOrderToCourierCommandHandlerImpl implements AssignOrderToCour
 
 
     @Override
+    @Transactional
     public void assignOrderToCourier() {
         List<Courier> couriers = courierRepository.getAllFreeCouriersWhereAllStorageSpacesAvailable();
 
@@ -28,5 +30,9 @@ public class AssignOrderToCourierCommandHandlerImpl implements AssignOrderToCour
         Courier courierWin = orderDispatcher.dispatch(order, couriers);
 
         courierWin.takeOrder(order);
+        order.assigned(courierWin);
+
+        courierRepository.updateCourier(courierWin);
+        orderRepository.updateOrder(order);
     }
 }

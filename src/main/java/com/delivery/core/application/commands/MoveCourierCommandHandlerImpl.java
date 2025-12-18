@@ -32,6 +32,7 @@ public class MoveCourierCommandHandlerImpl implements MoveCourierCommandHandler 
                 if (courier.getLocation().equals(locationOrder)) {
                     order.completed();
                     courier.completedOrder(order);
+                    orderRepository.updateOrder(order);
                 }
             });
         });
