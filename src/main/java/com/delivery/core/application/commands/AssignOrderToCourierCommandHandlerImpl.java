@@ -6,6 +6,7 @@ import com.delivery.core.domain.services.OrderDispatcher;
 import com.delivery.core.ports.CourierRepository;
 import com.delivery.core.ports.OrderRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,10 +20,11 @@ public class AssignOrderToCourierCommandHandlerImpl implements AssignOrderToCour
     private final OrderRepository orderRepository;
     private final CourierRepository courierRepository;
 
-
     @Override
     @Transactional
+    @Scheduled(fixedRate = 1000)
     public void assignOrderToCourier() {
+
         List<Courier> couriers = courierRepository.getAllFreeCouriersWhereAllStorageSpacesAvailable();
 
         Order order = orderRepository.getRandomOneOrderWithStatusCreated();

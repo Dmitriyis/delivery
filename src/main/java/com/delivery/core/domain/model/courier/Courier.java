@@ -26,7 +26,7 @@ public class Courier extends Aggregate<UUID> {
     public Courier(String name, Integer speed, Location location) {
         super(UUID.randomUUID());
 
-        if(name == null) {
+        if (name == null) {
             throw new IllegalArgumentException("Courier name cannot be null.");
         }
 
@@ -61,7 +61,6 @@ public class Courier extends Aggregate<UUID> {
         this.location = location;
         this.storagePlaces = storagePlaces;
     }
-
 
     public void addStoragePlace(String name, Integer volume) {
         StoragePlace newStoragePlace = new StoragePlace(name, volume);
@@ -145,7 +144,8 @@ public class Courier extends Aggregate<UUID> {
         this.location = location;
     }
 
-    public static Courier reStore(UUID id, String name, Integer speed, Location location, List<StoragePlace> storagePlaces) {
+    public static Courier reStore(UUID id, String name, Integer speed, Location location,
+            List<StoragePlace> storagePlaces) {
         return new Courier(id, name, speed, location, storagePlaces);
     }
 }
