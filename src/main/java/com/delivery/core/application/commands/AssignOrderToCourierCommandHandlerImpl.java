@@ -29,9 +29,6 @@ public class AssignOrderToCourierCommandHandlerImpl implements AssignOrderToCour
 
         Courier courierWin = orderDispatcher.dispatch(order, couriers);
 
-        courierWin.takeOrder(order);
-        order.assigned(courierWin);
-
         courierRepository.updateCourier(courierWin);
         orderRepository.updateOrder(order);
     }
