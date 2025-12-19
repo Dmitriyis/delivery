@@ -1,4 +1,4 @@
-package com.delivery.adapters;
+package com.delivery.adapters.in.http;
 
 import com.delivery.adapters.in.http.api.ApiApi;
 import com.delivery.adapters.in.http.model.Courier;
