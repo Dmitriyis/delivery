@@ -51,10 +51,25 @@ public class CourierRepositoryImpl implements CourierRepository {
         return couriers;
     }
 
+    @Override
+    public List<Courier> getAllWithOrders() {
+        return courierRepositoryJpa.getAllWithOrders();
+    }
+
+    @Override
+    public void saveAll(List<Courier> couriers) {
+        List<CourierDataModelEntity> courierDataModelEntities = couriers.stream()
+                .map(this::courierToCourierDataModelRoot)
+                .toList();
+
+        courierRepositoryJpa.saveAll(courierDataModelEntities);
+    }
+
     public CourierDataModelEntity courierToCourierDataModelRoot(Courier courier) {
         CourierDataModelEntity courierDataModelRoot = CourierDataModelEntity
                 .builder()
                 .id(courier.getId())
+                .name(courier.getName())
                 .speed(courier.getSpeed())
                 .location(courier.getLocation())
                 .build();
