@@ -15,8 +15,24 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
 
+  kafka:
+    bootstrap-servers: ${KAFKA_HOST:localhost:9092}
+    consumer:
+      group-id: ${KAFKA_CONSUMER_GROUP:delivery-group}
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+
 app:
   grpc:
     geo-service:
       host: ${DISCOUNT_SERVICE_GRPC_HOST:0.0.0.0}
       port: ${DISCOUNT_SERVICE_GRPC_PORT:5004}
+  kafka:
+    baskets-events-topic: baskets.events
+
