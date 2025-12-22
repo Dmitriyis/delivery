@@ -14,13 +14,11 @@ public class GetAllUnfinishedOrdersResponse {
 
     private UUID courierId;
 
-    private LocationOrderResponse locationOrderResponse;
+    private LocationOrderResponse location;
 
     @Data
-    static class LocationOrderResponse {
+    public static class LocationOrderResponse {
         private Integer x;
         private Integer y;
     }
 }
-
-

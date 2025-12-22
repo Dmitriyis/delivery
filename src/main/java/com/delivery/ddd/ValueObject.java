@@ -64,8 +64,8 @@ public abstract class ValueObject<T extends ValueObject<T>> implements Comparabl
 
     @Override
     public int compareTo(T other) {
-        List<Object> thisComponents  = this.equalityComponents();
-        List<Object> otherComponents  = other.equalityComponents();
+        List<Object> thisComponents = this.equalityComponents();
+        List<Object> otherComponents = other.equalityComponents();
 
         for (int i = 0; i < thisComponents.size() && i < otherComponents.size(); i++) {
             int result = safeCompare(thisComponents.get(i), otherComponents.get(i));

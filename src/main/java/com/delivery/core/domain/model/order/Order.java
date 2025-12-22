@@ -64,7 +64,7 @@ public class Order extends Aggregate<UUID> {
         }
 
         if (this.orderStatus == OrderStatus.COMPLETED) {
-            throw new IllegalStateException ("Cannot assign a courier to a completed order");
+            throw new IllegalStateException("Cannot assign a courier to a completed order");
         }
 
         this.courierId = courier.getId();
@@ -73,11 +73,11 @@ public class Order extends Aggregate<UUID> {
 
     public void completed() {
         if (this.orderStatus == OrderStatus.CREATED) {
-            throw new IllegalStateException ("Cannot complete an order that hasn't been assigned to a courier");
+            throw new IllegalStateException("Cannot complete an order that hasn't been assigned to a courier");
         }
 
         if (this.orderStatus == OrderStatus.COMPLETED) {
-            throw new IllegalStateException ("Order is already completed");
+            throw new IllegalStateException("Order is already completed");
         }
 
         this.orderStatus = OrderStatus.COMPLETED;

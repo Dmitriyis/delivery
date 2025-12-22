@@ -43,7 +43,7 @@ class CourierRepositoryTest extends AbstractIntegrationTest {
         Courier courier = new Courier("St", 2, new Location(1, 1));
         courierRepository.addCourier(courier);
 
-        Order order = new Order(UUID.randomUUID(), new Location(1,1), 5);
+        Order order = new Order(UUID.randomUUID(), new Location(1, 1), 5);
         order.assigned(courier);
         courier.takeOrder(order);
         orderRepository.addOrder(order);

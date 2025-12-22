@@ -6,6 +6,7 @@ import com.delivery.core.domain.model.order.Order;
 import com.delivery.core.ports.CourierRepository;
 import com.delivery.core.ports.OrderRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,6 +21,7 @@ public class MoveCourierCommandHandlerImpl implements MoveCourierCommandHandler 
 
     @Override
     @Transactional
+    @Scheduled(fixedRate = 2000)
     public void moveCourier() {
         List<Courier> couriersWithOrders = courierRepository.getAllWithOrders();
 
