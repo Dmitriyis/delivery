@@ -16,7 +16,7 @@ public interface CourierRepositoryJpa extends JpaRepository<CourierDataModelEnti
     List<CourierDataModelEntity> findAllFreeCouriersWhereAllStorageSpacesAvailable();
 
     @Query("select distinct c from CourierDataModelEntity c " +
-            "join StoragePlaceDataModelEntity sp on sp.courier = c " +
+            "inner join StoragePlaceDataModelEntity sp on sp.courier = c " +
             "where sp.order is not null")
-    List<Courier> getAllWithOrders();
+    List<CourierDataModelEntity> getAllWithOrders();
 }

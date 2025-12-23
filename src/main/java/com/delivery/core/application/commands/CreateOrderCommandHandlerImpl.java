@@ -1,5 +1,6 @@
 package com.delivery.core.application.commands;
 
+import com.delivery.DomainEventPublisher;
 import com.delivery.core.domain.model.karnel.Location;
 import com.delivery.core.domain.model.order.Order;
 import com.delivery.core.ports.GeoClient;
@@ -14,6 +15,7 @@ public class CreateOrderCommandHandlerImpl implements CreateOrderCommandHandler 
 
     private final GeoClient geoClient;
     private final OrderRepository orderRepository;
+    private final DomainEventPublisher domainEventPublisher;
 
     @Override
     @Transactional
@@ -23,5 +25,6 @@ public class CreateOrderCommandHandlerImpl implements CreateOrderCommandHandler 
         Order order = new Order(createOrderCommand.getId(), location, createOrderCommand.getVolume());
 
         orderRepository.addOrder(order);
+        domainEventPublisher.publish(order.getDomainEvents());
     }
 }
