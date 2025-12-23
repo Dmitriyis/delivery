@@ -14,7 +14,8 @@ public class OrderCreatedDomainEventHandlerImpl implements OrderCreatedDomainEve
 
     @Override
     @EventListener
-    public void handle(OrderCreatedDomainEvent event) throws Exception {
+    public Boolean handle(OrderCreatedDomainEvent event) throws Exception {
         ordersEventsProducer.publish(event);
+        return true;
     }
 }

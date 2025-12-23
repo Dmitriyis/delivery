@@ -14,7 +14,8 @@ public class OrderCompletedDomainEventHandlerImpl implements OrderCompletedDomai
 
     @Override
     @EventListener
-    public void handle(OrderCompletedDomainEvent event) throws Exception {
+    public Boolean handle(OrderCompletedDomainEvent event) throws Exception {
         ordersEventsProducer.publish(event);
+        return true;
     }
 }
