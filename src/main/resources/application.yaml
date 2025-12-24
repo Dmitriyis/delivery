@@ -35,4 +35,5 @@ app:
       port: ${DISCOUNT_SERVICE_GRPC_PORT:5004}
   kafka:
     baskets-events-topic: baskets.events
+    orders-events-topic: orders.events
 

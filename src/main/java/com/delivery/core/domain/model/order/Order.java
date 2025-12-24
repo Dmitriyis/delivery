@@ -2,6 +2,8 @@ package com.delivery.core.domain.model.order;
 
 import com.delivery.core.domain.model.courier.Courier;
 import com.delivery.core.domain.model.karnel.Location;
+import com.delivery.core.domain.model.order.events.OrderCompletedDomainEvent;
+import com.delivery.core.domain.model.order.events.OrderCreatedDomainEvent;
 import com.delivery.ddd.Aggregate;
 import lombok.Getter;
 
@@ -44,6 +46,7 @@ public class Order extends Aggregate<UUID> {
         this.location = location;
         this.volume = volume;
         this.orderStatus = OrderStatus.CREATED;
+        raiseDomainEvent(new OrderCreatedDomainEvent(this));
     }
 
     private Order(UUID id, Location location, Integer volume, OrderStatus orderStatus, UUID courierId) {
@@ -80,6 +83,7 @@ public class Order extends Aggregate<UUID> {
             throw new IllegalStateException("Order is already completed");
         }
 
+        raiseDomainEvent(new OrderCompletedDomainEvent(this));
         this.orderStatus = OrderStatus.COMPLETED;
     }
 

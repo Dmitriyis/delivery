@@ -53,7 +53,10 @@ public class CourierRepositoryImpl implements CourierRepository {
 
     @Override
     public List<Courier> getAllWithOrders() {
-        return courierRepositoryJpa.getAllWithOrders();
+        return courierRepositoryJpa.getAllWithOrders()
+                .stream()
+                .map(CourierDataModelEntityToCourierMapper::toDomain)
+                .collect(Collectors.toList());
     }
 
     @Override
