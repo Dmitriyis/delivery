@@ -27,7 +27,6 @@ public class MoveCourierCommandHandlerImpl implements MoveCourierCommandHandler 
     @Scheduled(fixedRate = 2000)
     public void moveCourier() {
         List<Courier> couriersWithOrders = courierRepository.getAllWithOrders();
-        List<Order> ordersEvents = new ArrayList<>();
 
         couriersWithOrders.forEach(courier -> {
             courier.getStoragePlaces().forEach(storagePlace -> {
@@ -40,15 +39,11 @@ public class MoveCourierCommandHandlerImpl implements MoveCourierCommandHandler 
                     courier.completedOrder(order);
                     orderRepository.updateOrder(order);
 
-                    ordersEvents.add(order);
+                    domainEventPublisher.publish(List.of(order));
                 }
             });
         });
 
         courierRepository.saveAll(couriersWithOrders);
-
-        ordersEvents.forEach(order -> {
-            domainEventPublisher.publish(List.of(order));
-        });
     }
 }
