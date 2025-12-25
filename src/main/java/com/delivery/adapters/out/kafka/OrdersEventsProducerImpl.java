@@ -40,7 +40,7 @@ public class OrdersEventsProducerImpl implements OrdersEventsProducer {
     private OrderCompletedIntegrationEvent mapToProto(OrderCompletedDomainEvent domainEvent) {
         return OrderEventsProto.OrderCompletedIntegrationEvent
                 .newBuilder()
-                .setEventType("COMPLETED")
+                .setEventType(domainEvent.getClass().getSimpleName())
                 .setEventId(domainEvent.getEventId().toString())
                 .setOrderId(domainEvent.getOrderId())
                 .setCourierId(domainEvent.getCourierId())
@@ -50,7 +50,7 @@ public class OrdersEventsProducerImpl implements OrdersEventsProducer {
     private OrderCreatedIntegrationEvent mapToProto(OrderCreatedDomainEvent domainEvent) {
         return OrderCreatedIntegrationEvent
                 .newBuilder()
-                .setEventType("CREATED")
+                .setEventType(domainEvent.getClass().getSimpleName())
                 .setEventId(domainEvent.getEventId().toString())
                 .setOrderId(domainEvent.getOrderId())
                 .build();

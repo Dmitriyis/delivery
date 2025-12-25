@@ -3,8 +3,10 @@ package com.delivery.core.domain.model.order.events;
 import com.delivery.core.domain.model.order.Order;
 import com.delivery.ddd.DomainEvent;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
+@NoArgsConstructor(force = true)
 public class OrderCompletedDomainEvent extends DomainEvent {
     private String orderId;
     private String courierId;

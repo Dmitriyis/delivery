@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class CreateOrderCommandHandlerImpl implements CreateOrderCommandHandler {
@@ -25,6 +27,6 @@ public class CreateOrderCommandHandlerImpl implements CreateOrderCommandHandler 
         Order order = new Order(createOrderCommand.getId(), location, createOrderCommand.getVolume());
 
         orderRepository.addOrder(order);
-        domainEventPublisher.publish(order.getDomainEvents());
+        domainEventPublisher.publish(List.of(order));
     }
 }
