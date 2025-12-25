@@ -1,7 +1,7 @@
 package com.delivery.adapters.out.postgres.outbox;
 
 
-import com.delivery.errs.Except;
+import errs.Except;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -10,7 +10,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Getter
